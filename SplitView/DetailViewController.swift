@@ -11,7 +11,9 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    
 
+    @IBOutlet weak var webView: UIWebView!
 
     var detailItem: AnyObject? {
         didSet {
@@ -25,8 +27,12 @@ class DetailViewController: UIViewController {
         if let detail: AnyObject = self.detailItem {
             if let label = self.detailDescriptionLabel {
                 label.text = detail.description
+                self.webView.scalesPageToFit = true
+                self.webView .loadRequest(NSURLRequest(URL: NSURL(string: label.text!)))
+                
             }
         }
+
     }
 
     override func viewDidLoad() {
